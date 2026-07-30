@@ -12,16 +12,16 @@ Allows Tommy (or maybe niko with some tweaks), to become a citizen of the Orient
 
 ## Add the models
 
-The models replace amb_icecone01 and amb_juice_bot models, so make sure to make backups just in case.
-- Open OpenIV, go to pc/models/cdimages and open weapons.img
-- Find amb_juice_bot.wdr and amb_juice_bot.wtd, make backup of both just in case (right click extract)
-- Do the same with amb_icecone01.wdr and amb_icecone01.wtd
-- Now you are ready to replace the models by the ones in models_for_openiv. Just right click the wdr file and replace by the ones in this mod.
+The models replace `amb_icecone01` and `amb_juice_bot` models, so make sure to make backups just in case.
+- Open OpenIV, go to `pc/models/cdimages` and open `weapons.img`
+- Find `amb_juice_bot.wdr` and `amb_juice_bot.wtd`, make backup of both just in case (right click extract)
+- Do the same with `amb_icecone01.wdr` and `amb_icecone01.wtd`
+- Now you are ready to replace the models by the ones in `models_for_openiv`. Just right click the wdr file and replace by the ones in this mod.
 - Do not delete the wtd files, the games counts on them existing even tho my models have the textures embedded already so they are functionally ignored.
 
 ## Add the script
 
-Just copy MateScript.cs to your game location/scripts
+Just copy `MateScript.cs` to your game location/scripts
 
 # About the models
 

@@ -7,4 +7,4 @@ Como VC Next Gen es tecnicamente GTA4, Tommy nada, yo queria hacerlo mas fiel al
 
 # Como?
 
-Copia SwimmingLimitScript.cs a la carpeta de tu juego/scripts.
+Copia `SwimmingLimitScript.cs` a la carpeta de tu juego/scripts.

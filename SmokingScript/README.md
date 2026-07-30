@@ -8,4 +8,4 @@ Makes Tommy invincible... what do you think it does?
 
 # How To
 
-Just copy and paste SmokingScript.cs to your game folder/scripts
+Just copy and paste `SmokingScript.cs` to your game folder/scripts

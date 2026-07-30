@@ -9,4 +9,4 @@ Tommy can talk! I mean, that's not new, he's not Claude. What I mean is you can 
 
 # How To
 
-Just copy SpeakScript.cs into your games folder/scripts
+Just copy `SpeakScript.cs` into your games folder/scripts

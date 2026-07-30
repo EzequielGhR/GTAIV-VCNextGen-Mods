@@ -8,4 +8,4 @@ Que Tommy sea invencible... que te parece que hace capo?
 
 # Como?
 
-Copia y pega SmokingScript.cs en la carpeta de tu juego/scripts
+Copia y pega `SmokingScript.cs` en la carpeta de tu juego/scripts

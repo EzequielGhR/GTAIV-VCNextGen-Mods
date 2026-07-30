@@ -7,4 +7,4 @@ Well since VC next gen is technically GTA4, that means now Tommy swims. I wanted
 
 # How to
 
-Just copy and paste SwimmingLimitScript.cs to your game's folder/scripts.
+Just copy and paste `SwimmingLimitScript.cs` to your game's folder/scripts.

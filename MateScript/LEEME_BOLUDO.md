@@ -13,7 +13,7 @@ Permite que Tommy (o niko si toqueteas el codigo un poco), se convierta en ciuda
 ## Agrega los modelos
 
 Los modelos a reemplazar son `amb_icecone01` y `amb_juice_bot`, asi que hace respaldo por las dudas.
-- Abri OpenIV, anda a pc/models/cdimages y abri weapons.img
+- Abri OpenIV, anda a `pc/models/cdimages` y abri `weapons.img`
 - Busca `amb_juice_bot.wdr` y `amb_juice_bot.wtd`, hace un respaldo de ambos (click izquierdo, extraer)
 - Hace lo mismo para `amb_icecone01.wdr` y `amb_icecone01.wtd`
 - Ahora estas listo para meter los modelos en `models_for_openiv`. Dale click derecho al archivo wdr en OpenIV y reemplaza por los que estan en este mod.
@@ -21,7 +21,7 @@ Los modelos a reemplazar son `amb_icecone01` y `amb_juice_bot`, asi que hace res
 
 ## Agrega el script
 
-Solo copia MateScript.cs a la carpeta de tu juego/scripts
+Solo copia `MateScript.cs` a la carpeta de tu juego/scripts
 
 # Sobre los modelos
 

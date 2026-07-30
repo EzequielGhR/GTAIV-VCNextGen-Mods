@@ -9,4 +9,4 @@ Tommy puede hablar! O sea ya sabiamos, no es Claude, pero me refiero a que podes
 
 # Como?
 
-Copia SpeakScript.cs a tu carpeta del juego/scripts
+Copia `SpeakScript.cs` a tu carpeta del juego/scripts
