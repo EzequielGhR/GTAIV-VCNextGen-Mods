@@ -1,5 +1,6 @@
 using System;
 using System.Collections.Generic;
+using System.IO;
 using System.Text;
 using GTA;
 
@@ -30,8 +31,12 @@ namespace SwimmingLimitScript {
             { "sprint_turn_l", 1.75f },
             { "sprint_turn_r", 1.75f },
         };
+        private readonly string statsPath = "scripts\\swimming_stats.txt";
+        private readonly float maxMinutesSwimmed = 60 * 12;
+        private float minutesSwimmed;
 
         public SwimmingLimitScript() {
+            this.minutesSwimmed = LoadMinutesSwimmed();
             this.Interval = 100;
             this.Tick += new EventHandler(this.SwimmingLimitScript_Tick);
         }
@@ -39,18 +44,24 @@ namespace SwimmingLimitScript {
         private void SwimmingLimitScript_Tick(object sender, EventArgs e) {
             DrawStaminaBar();
             multiplier = GetMultiplier();
-            if (Player.Character.isInWater && stamina > 0) {
+            if (Player.Character.isSwimming && stamina > 0) {
+                SaveMinutesSwimmed();
                 stamina -= multiplier;
                 stamina = stamina < 0 ? 0 : stamina;
+                if (minutesSwimmed < maxMinutesSwimmed) {
+                    minutesSwimmed += (float)(Interval > 0 ? Interval : 1) / (1000 * 60);
+                } else {
+                    minutesSwimmed = maxMinutesSwimmed;
+                }
                 return;
             }
 
-            if (Player.Character.isInWater && Player.Character.Health > 0) {
+            if (Player.Character.isSwimming && Player.Character.Health > 0) {
                 Player.Character.Health -= (int)Math.Ceiling(multiplier);
                 return;
             }
 
-            if (Player.Character.isInWater) {
+            if (Player.Character.isSwimming) {
                 Player.Character.Die();
                 return;
             }
@@ -59,9 +70,14 @@ namespace SwimmingLimitScript {
         }
 
         private float GetMultiplier() {
+            // Linear: At 1% the factor is aprox 1.0, at 100% is aprox 0.02
+            float slope = (0.02f - 1.0f) / (maxMinutesSwimmed - maxMinutesSwimmed * 0.01f);
+            float intercept = 1.0f - slope * maxMinutesSwimmed * 0.01f;
+            float factor = minutesSwimmed > maxMinutesSwimmed * 0.01f ? slope * minutesSwimmed + intercept : 1;
+
             foreach (string anim in animMultipliers.Keys) {
                 if (swimmingSet.isPedPlayingAnimation(Player.Character, anim)) {
-                    return animMultipliers[anim];
+                    return animMultipliers[anim] * factor;
                 }
             }
             return 0.0f;
@@ -74,7 +90,45 @@ namespace SwimmingLimitScript {
             for (int i = 0; i < (int)Math.Ceiling(stamina / 4); i++) {
                 stringBuilder.Append("█");
             }
-            Game.DisplayText(stringBuilder.ToString());
+            Game.DisplayText(String.Format(
+                "{0}\nAbility: {1}%",
+                stringBuilder.ToString(),
+                (100 * minutesSwimmed  / maxMinutesSwimmed).ToString("F2")
+            ));
+        }
+
+        private float LoadMinutesSwimmed() {
+            float minutes = 0;
+            Game.Console.Print("Loading swimming config file");
+            try {
+                StreamReader reader = new StreamReader(statsPath);
+                string data = reader.ReadLine();
+                minutes = float.Parse(data.Split(':')[1].Trim());
+                reader.Close();
+            } catch (Exception e) {
+                Game.Console.Print(String.Format(
+                    "[ERROR] Could not open swimming stats: {0} {1}",
+                    e.GetType(),
+                    e.Data
+                ));
+            }
+        
+            return minutes;
+        }
+
+        private void SaveMinutesSwimmed() {
+            Game.Console.Print(
+                String.Format("[INFO] Saving swimming config file. Current minutesSwimmed: {0}", minutesSwimmed)
+            );
+            try {
+                StreamWriter writter = new StreamWriter(statsPath);
+                writter.WriteLine(String.Format("minutes: {0}", minutesSwimmed));
+                writter.Close();
+            } catch (Exception e) {
+                Game.Console.Print(
+                    String.Format("[ERROR] There was an issue writing stats: {0} {1}", e.GetType(), e.Data)
+                );
+            }
         }
     }
 }
