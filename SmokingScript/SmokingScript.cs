@@ -163,7 +163,7 @@ namespace SmokingScript {
             cigarObj.Detach();
             Wait(2000);
 
-            cigarObj.Delete();
+            cigarObj.NoLongerNeeded();
             cigarObj = null;
         }
     }
