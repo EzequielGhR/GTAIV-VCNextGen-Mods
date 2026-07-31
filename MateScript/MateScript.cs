@@ -205,12 +205,12 @@ namespace MateScript {
             Wait(4000);
 
             if (mateObj != null && mateObj.Exists()) {
-                mateObj.Delete();
+                mateObj.NoLongerNeeded();
                 mateObj = null;
             }
 
             if (thermosObj != null && thermosObj.Exists()) {
-                thermosObj.Delete();
+                thermosObj.NoLongerNeeded();
                 thermosObj = null;
             }
 
