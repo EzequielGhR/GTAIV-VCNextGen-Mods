@@ -44,8 +44,8 @@ namespace SwimmingLimitScript {
         private void SwimmingLimitScript_Tick(object sender, EventArgs e) {
             DrawStaminaBar();
             multiplier = GetMultiplier();
-            if (Player.Character.isSwimming && minutesSwam < maxMinutesSwam * 0.2f) {
-                Player.Character.Velocity = minutesSwam /(2 * maxMinutesSwam) * Player.Character.Velocity;
+            if (Player.Character.isSwimming && minutesSwam < maxMinutesSwam * 0.1f) {
+                Player.Character.Velocity = 2 * minutesSwam / maxMinutesSwam * Player.Character.Velocity;
             }
 
             if (Player.Character.isInWater && stamina > 0) {
