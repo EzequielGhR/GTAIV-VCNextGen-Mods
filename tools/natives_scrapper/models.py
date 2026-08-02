@@ -10,6 +10,7 @@ class NativeType(StrEnum):
     UINT = "UINT"
     FLOAT = "FLOAT"
     UNKNOWN = "UNKNOWN"
+    STRING = "STRING"
 
     @staticmethod
     def from_string(t: str) -> "NativeType":
@@ -24,6 +25,8 @@ class NativeType(StrEnum):
             return NativeType.FLOAT
         if clean in ["uint", "unsigned int", "unsigned integer"]:
             return NativeType.UINT
+        if clean in ["str", "string", "char*", "char *"]:
+            return NativeType.STRING
 
         return NativeType.UNKNOWN
     

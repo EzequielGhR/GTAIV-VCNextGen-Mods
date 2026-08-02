@@ -36,7 +36,12 @@ def parse_main_list(soup: BeautifulSoup) -> Dict[str, str]:
         if not href or not isinstance(href, str):
             print("Invalid 'a' tag:", a.text)
             return False
-        return href.startswith("/wiki") and a.text
+        return (
+            href.startswith("/wiki")
+            and a.text
+            and a.text.strip() == a.text.strip().upper()
+            and " " not in a.text
+        )
         
     a_tags = soup.select("ul > li > a") or []
     
