@@ -1,0 +1,3 @@
+# Ignore all json files except availability.json
+*.json
+!availability.json
