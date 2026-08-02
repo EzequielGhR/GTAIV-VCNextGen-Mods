@@ -49,6 +49,7 @@ class NativeFunction(BaseModel):
     return_type_description: str
     parameters: Optional[List[NativeParameter]] = None
     description: Optional[str] = None
+    warning_message: Optional[str] = None
 
     model_config = ConfigDict(from_attributes=True)
 
@@ -58,5 +59,6 @@ class NativeFunction(BaseModel):
             "return_type": self.return_type.value,
             "return_description": self.return_type_description,
             "parameters": [p.to_dict() for p in self.parameters] if self.parameters else None,
-            "description": self.description
+            "description": self.description,
+            "warning_message": self.warning_message
         }

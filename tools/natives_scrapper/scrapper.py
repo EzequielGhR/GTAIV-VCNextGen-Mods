@@ -75,9 +75,13 @@ def parse_native_function(soup: BeautifulSoup, name: str) -> NativeFunction:
         )
 
     params = [None] * param_count
-    
-    for row in table_rows[:param_count]:
-        pnum, ptype, pdesc = row.findAll("td")
+    warning_message: str | None = None
+    for i, row in enumerate(table_rows[:param_count]):
+        try:
+            pnum, ptype, pdesc = row.findAll("td")
+        except Exception:
+            warning_message = f"Expected parameters: {param_count}. Found: {i}. Documentation incomplete"
+            break
 
         position = int(pnum.text.strip(". ")) - 1
         parameter_type = NativeType.from_string(ptype.text)
@@ -89,14 +93,17 @@ def parse_native_function(soup: BeautifulSoup, name: str) -> NativeFunction:
             description=parameter_description
         )
 
-    assert all(params), f"There are null params on list: {params}"
+    if not all(params):
+        null_index = params.index(None)
+        assert not any(params[null_index:]), "There are null parameters in between defined parameters"
 
     return NativeFunction(
         function_name=name,
         return_type=return_type,
         return_type_description=return_type_description,
-        parameters=params,
-        description=description
+        parameters=[p for p in params if p],
+        description=description,
+        warning_message=warning_message
     )
 
 
@@ -126,7 +133,7 @@ def get_native_data(function_name: str, force: bool = False) -> dict:
     if clean_name not in natives:
         raise NativeNotFoundException(f"The requested native does not exist. Requested: {function_name}. Cleaned: {clean_name}")
 
-    if not os.path.exists(NATIVE_DATA_PATH / f"{clean_name}.json" or force):
+    if not os.path.exists(NATIVE_DATA_PATH / f"{clean_name}.json") or force:
         native_url = natives[clean_name]
         soup = get_soup(native_url)
         
