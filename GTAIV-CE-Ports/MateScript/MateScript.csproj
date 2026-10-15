@@ -1,0 +1,24 @@
+<Project Sdk="Microsoft.NET.Sdk">
+  <PropertyGroup>
+    <!-- This targets the specific .NET Framework version for GTA IV -->
+    <TargetFramework>net472</TargetFramework>
+    
+    <!-- This ensures the output goes to a standard bin folder -->
+    <OutputPath>bin\Debug\</OutputPath>
+    
+    <!-- The name of your final .dll file -->
+    <AssemblyName>MateScript</AssemblyName>
+    
+    <!-- Optimization for GTA IV modding -->
+    <GenerateRuntimeConfigurationFiles>false</GenerateRuntimeConfigurationFiles>
+  </PropertyGroup>
+
+  <ItemGroup>
+    <!-- Reference to the ScriptHookDotNet DLL -->
+    <Reference Include="scripthookdotnet">
+      <HintPath>lib\scripthookdotnet.dll</HintPath>
+      <HintPath>lib\scripthookdotnet.xml</HintPath>
+      <Private>false</Private>
+    </Reference>
+  </ItemGroup>
+</Project>
