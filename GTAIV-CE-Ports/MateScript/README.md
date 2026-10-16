@@ -1,11 +1,11 @@
 # What does it do
 
 Allows Tommy Niko (or maybe Luis or Johnny with some tweaks), to become a citizen of the Oriental Republic of Uruguay, so he can walk around with his Thermos and Mate/Chimarrao.
-- Press NavDown + Sprint (Up + A for controllers) to spawn the thermos and mate.
-- Press NavLeft (Left) to take a sip, each sip rechareges 2HP.
+- Press NavDown + Sprint (Down + A for controllers) to spawn the thermos and mate.
+- Press NavLeft (Left) to take a sip, each sip recharges 2HP.
 - Press Again NavDown + Sprint to throw them away.
 - While drinking mate you can run, walk and swim but you cannot switch weapons.
-- Yes you can swim while drinking mate is super funny, try taking a zip while floating on water.
+- Yes you can swim while drinking mate is super funny, try taking a sip while floating on water.
 - If something interrupts Tommy's Niko's drinking, he will curse.
 
 # How To Install
@@ -25,8 +25,8 @@ Just copy `MateScript.cs` to your game location/scripts
 
 # About the models
 
-They are really low polly cause it was my first time using blender in my life, if anyone wants to improve them be my guest.
+They are really low poly cause it was my first time using blender in my life, if anyone wants to improve them be my guest.
 I will provide the original obj/mtl format files for anyone willing to make improvements, but keep in mind the code is tweaked for their precise
-measures and position (I itereated a lot on the position cause it was easier than iterating on the model).
+measures and position (I iterated a lot on the position cause it was easier than iterating on the model).
 
 If you want to convert your 3d models for GTA 4, keep in mind the only possible way is 3dsmax 2012 with the GIMS IV script.. yeah.. painful.

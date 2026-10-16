@@ -9,10 +9,10 @@ Publicly storing some basic mods I've been doing with scripthookdotnet for VC Ne
 
 ### If using Linux
 
-- I recomend using lutris, makes prefix management and runners management easier.
+- I recommend using Lutris, it makes prefix management and runner management easier.
 - You will need to install dotnet 4.7.2 using winetricks.
 - If you manage to install dotnet then you're golden, install scripthookdotnet and try entering the game and opening the console to make sure its all working.
-- Additionally I recomend installing OpenIV in the same prefix, you can do that from lutris by running "Run an arbitrary exe inside the prefix" and running the OpenIV installer, or running said installer with wine, having the `WINEPREFIX` env var set.
+- Additionally I recommend installing OpenIV in the same prefix, you can do that from Lutris by running "Run an arbitrary exe inside the prefix" and running the OpenIV installer, or running said installer with Wine, having the `WINEPREFIX` env var set.
 - OpenIV installs to `%the prefix%/drive_c/users/{%your_user% or "steamuser" if using proton}/AppData/Local/New Technology Studio/Apps/OpenIV`
 - You can run OpenIV from that prefix by again running an exe in the prefix and walking the path to OpenIV.exe
 - If you have the game files on another location outside the prefix, consider doing a symlink inside the prefix to the game files, it will let you select the game
