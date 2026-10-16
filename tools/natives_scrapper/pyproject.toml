@@ -1,0 +1,24 @@
+[project]
+name = "natives-scrapper"
+version = "0.1.0"
+description = ""
+authors = [
+    {name = "EzequielGhR",email = "ezequielghra97@gmail.com"}
+]
+requires-python = ">=3.11"
+dependencies = [
+    "requests (>=2.34.2,<3.0.0)",
+    "bs4 (>=0.0.2,<0.0.3)",
+    "pydantic (>=2.13.4,<3.0.0)"
+]
+
+[dependency-groups]
+dev = [
+    "ruff (>=0.16.1,<0.17.0)",
+    "ipython (>=9.16.0,<10.0.0)"
+]
+
+
+[build-system]
+requires = ["poetry-core>=2.0.0,<3.0.0"]
+build-backend = "poetry.core.masonry.api"
