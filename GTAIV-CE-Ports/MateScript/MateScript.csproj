@@ -19,5 +19,10 @@
       <HintPath>..\..\lib\ScriptHookDotNet.dll</HintPath>
       <Private>false</Private>
     </Reference>
+    <!-- Reference to the NAudioAdvanced-IV DLL -->
+    <Reference Include="NAudioAdvanced-IV">
+      <HintPath>..\..\lib\NAudioAdvanced-IV.dll</HintPath>
+      <Private>false</Private>
+    </Reference>
   </ItemGroup>
 </Project>
