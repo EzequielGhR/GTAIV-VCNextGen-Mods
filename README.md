@@ -29,3 +29,4 @@ It should be a folder per mod, and I'll try to include a readme per mod, but hel
     - I play and mod on linux, so I don't have `Windows.Forms` to deal with keys
 
 - If you plan to write dotnet scripts on linux, I encourage you to use VSCode and install the C# dev kit, it makes your life super simple. And believe me I am helix guy, but still for C# this is the best way.
+- If you need to compile dotnet scripts in linux, you can use the `csc` or `msc` compiler from the `mono` package. You have an example on how to do this in [MateScript build bash file](./GTAIV-CE-Ports/MateScript/linux_build.sh)

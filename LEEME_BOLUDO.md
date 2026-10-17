@@ -28,3 +28,4 @@ Deberia ser una carpeta por mod, y un readme por carpeta, pero en general es cop
     - Juego y moddeo en linux asi que no tengo `Windows.Forms` para usar keydowns de manera simple.
 
 - Si planeas escribir scripts de dotnet en linux, te recomiendo instalar VSCode con la extension de C# dev kit, te hace la vida mas facil, y creeme que yo soy ultra fan de helix, pero la verdad es la verdad.
+- Si precisas compilar tus scripts de dotnet en linux, podes usar el compiler `csc` o `msc` incluido en el paquete de `mono`. Tenes un ejemplo de como hacer esto en el [bash build del MateScript](./GTAIV-CE-Ports/MateScript/linux_build.sh)

@@ -1,5 +1,6 @@
 using System;
 using GTA;
+using NAudioAdvancedIV;
 
 namespace MateScript {
     class MateScript : Script {
@@ -14,6 +15,9 @@ namespace MateScript {
         private readonly GTA.Vector3 NIKO_MATE_ROT = new GTA.Vector3(0, (float)(Math.PI / 8), (float)(-Math.PI / 3));
         private readonly GTA.Vector3 NIKO_THERMOS_POS = new GTA.Vector3(0.05f, 0f, -0.13f);
         private readonly GTA.Vector3 NIKO_THERMOS_ROT = new GTA.Vector3(0, 0, 0);
+
+        // Sound(s) initialization
+        private Sound ruiditoDeMate = null;
 
         // Object initialization
         private GTA.Object mateObj = null;
@@ -51,7 +55,7 @@ namespace MateScript {
                 drinkingFlag = false;
                 Player.Character.CanSwitchWeapons = true;
                 Player.Character.SayAmbientSpeech("ATTACK_ANY_GANGSTER");
-                DestroyObjects();
+                DestroyObjectsAndSounds();
             }
 
             if (IsPlayerAvailable() && !IsPlayerDrinking() && Game.isGameKeyPressed(GameKey.NavDown) && Game.isGameKeyPressed(GameKey.Sprint)) {
@@ -89,7 +93,7 @@ namespace MateScript {
 
         private void StartDrinking() {
             Game.Console.Print("Starting to drink");
-            InitObjects();
+            InitObjectsAndSounds();
             
             Player.Character.CanSwitchWeapons = false;
             Player.Character.Animation.Play(
@@ -106,14 +110,14 @@ namespace MateScript {
             Player.Character.Animation.Play(
                 idleSet, idleWalkAnim, 8.0f, AnimationFlags.Unknown09 | AnimationFlags.Unknown11
             );
+            bool bSpecial = cRandom.Next() % 3 == 0;
+            if (bSpecial) ruiditoDeMate.Play(Player.Character);
 
             // Manual waiting because waiting for anim to finish does not work.
             Wait(5000);
 
             Player.Character.Health += 5;
-            if (cRandom.Next() % 3 == 0) {
-                Player.Character.SayAmbientSpeech("THANKS");
-            }
+            if (bSpecial) Player.Character.SayAmbientSpeech("THANKS");
 
             StartDrinking();
         }
@@ -124,22 +128,27 @@ namespace MateScript {
                 destroySet, destroyWalkAnim, 8.0f, AnimationFlags.Unknown09 | AnimationFlags.Unknown11
             );
             Player.Character.Animation.WaitUntilFinished(destroySet, destroyWalkAnim);
+            ruiditoDeMate.Play(Player.Character);
             
             // Manual waiting because waiting for anim to finish does not work.
             Wait(6500);
-            DestroyObjects();
+            DestroyObjectsAndSounds();
 
             drinkingFlag = false;
             Player.Character.CanSwitchWeapons = true;
             Wait(2000);
         }
 
-        private void InitObjects() {
+        private void InitObjectsAndSounds() {
             Game.Console.Print(String.Format(
                 "Initializing Objects. mate: {0}, thermos: {1}",
                 (uint)mateModel.Hash,
                 (uint)thermosModel.Hash
             ));
+
+            if (ruiditoDeMate == null) {
+                ruiditoDeMate = new Sound("ruiditodemate.wav", "scripts/MateSounds");
+            }
 
             if (mateObj == null) {
                 mateObj = World.CreateObject(mateModel, Player.Character.Position.Around(99.0F));
@@ -199,7 +208,7 @@ namespace MateScript {
             );
         }
 
-        private void DestroyObjects() {
+        private void DestroyObjectsAndSounds() {
             if (mateObj != null && mateObj.Exists()) {
                 mateObj.Detach();
             }
@@ -207,6 +216,9 @@ namespace MateScript {
             if (thermosObj != null && thermosObj.Exists()) {
                 thermosObj.Detach();
             }
+
+            ruiditoDeMate?.Dispose();
+            ruiditoDeMate = null;
 
             Wait(4000);
 
