@@ -15,9 +15,8 @@
 
   <ItemGroup>
     <!-- Reference to the ScriptHookDotNet DLL -->
-    <Reference Include="scripthookdotnet">
-      <HintPath>lib\scripthookdotnet.dll</HintPath>
-      <HintPath>lib\scripthookdotnet.xml</HintPath>
+    <Reference Include="ScriptHookDotNet">
+      <HintPath>..\..\lib\ScriptHookDotNet.dll</HintPath>
       <Private>false</Private>
     </Reference>
   </ItemGroup>
